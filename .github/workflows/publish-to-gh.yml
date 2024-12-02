@@ -16,7 +16,7 @@ jobs:
         with:
           bun-version: 'latest'
           registry-url: https://npm.pkg.github.com/
-      - run: bun install
+      - run: bun install --registry=https://registry.npmjs.org/
       - name: Set version based on branch
         id: versioning
         run: |
