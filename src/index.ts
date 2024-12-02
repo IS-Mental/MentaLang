@@ -8,8 +8,8 @@ const text = await file.text();
 const parser = new Parser();
 console.log("Rozpoczynanie");
 
-// console.log(JSON.stringify(parser.parse(text), undefined, 2));
-console.log(parser
+console.log(JSON.stringify(parser.parse(text), undefined, 2));
+/* console.log(parser
     .parse(text)
     .map(x => {
         if (x.type != "paragraph") return;
@@ -23,4 +23,7 @@ console.log(parser
             return `<${borders}>${x.text}</${borders}>`
         }
     }).join("")
-);
+); */
+
+export * from "./parser";
+export * from "./syntaxTokens";

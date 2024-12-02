@@ -1,8 +1,17 @@
 {
   "name": "mentalang",
   "module": "src/index.ts",
+  "main": "bin/index.ts",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "repository": {
+    "directory": "IS-Mental/MentaLang",
+    "type": "github"
+  },
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./bin --minify",
+    "prepublish": "bun run build"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
