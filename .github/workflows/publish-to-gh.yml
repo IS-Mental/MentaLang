@@ -17,14 +17,12 @@ jobs:
           bun-version: 'latest'
           registry-url: https://npm.pkg.github.com/
       - run: bun install --registry=https://registry.npmjs.org/
-      - name: Set version based on branch
-        id: versioning
+      - name: Publish with version based on branch
         run: |
           if [ "${{ github.ref_name }}" == "main" ]; then
-            bun version patch
+            bun publish --tag="latest"
           elif [ "${{ github.ref_name }}" == "dev" ]; then
-            bun version prerelease --preid=beta
+            bun publish --tag="next"
           fi
-      - run: bun publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
