@@ -12,19 +12,19 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
+          bun-version: 'latest'
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
+      - run: bun install
       - name: Set version based on branch
         id: versioning
         run: |
           if [ "${{ github.ref_name }}" == "main" ]; then
-            echo "version=$(npm version patch --no-git-tag-version)" >> $GITHUB_ENV
+            bun version patch
           elif [ "${{ github.ref_name }}" == "dev" ]; then
-            echo "version=$(npm version prerelease --preid=beta --no-git-tag-version)" >> $GITHUB_ENV
+            bun version prerelease --preid=beta
           fi
-      - run: npm publish
+      - run: bun publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
