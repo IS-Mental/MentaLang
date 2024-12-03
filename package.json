@@ -1,22 +1,25 @@
 {
   "name": "mentalang",
   "module": "src/index.ts",
-  "main": "bin/index.ts",
+  "main": "dist/index.ts",
   "type": "module",
+  "types": "",
   "version": "0.0.3",
   "repository": {
     "directory": "IS-Mental/MentaLang",
     "type": "github"
   },
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./bin --minify",
-    "prepublish": "bun run build"
+    "build": "bun build ./src/index.ts --outdir ./dist --minify",
+    "build:declarations": "tsc --emitDeclarationOnly --declarationMap -d",
+    "prepublish": "bun run build && bun run build:declarations"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@tsconfig/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "graphemer": "^1.4.0"
